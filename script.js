@@ -245,7 +245,7 @@ function checkCompanyOpenP() {
 function checkCompanyOpenS() {
   const data = new Date();
   const hora = data.getHours();
-  return hora >= 1 && hora < 3;
+  return hora >= 8 && hora < 13;
 }
 
 const spanItem = document.getElementById("date-span")

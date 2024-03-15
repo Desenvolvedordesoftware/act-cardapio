@@ -32,8 +32,9 @@
       <span class="text-white font-medium">
         Folha 16 - Praça Raimundo Mesquita - Marabá-Pa
       </span>
-      <div class="bg-green-600 px-4 py-1 rounded-lg mt-5" id="date-span">
+      <div class="flex-col text-center bg-green-600 justify-center px-4 py-1 rounded-lg mt-5" id="date-span">
         <span class="text-white font-medium">Terça a Domingo - 11h às 14h - 18h às 23:30hr</span>
+        <span class="text-white font-medium hidden" id="date-leg-span"> - Restaurente está fechado no momento!</span>
       </div>
     </div>
   </header>
@@ -186,37 +187,89 @@
   </div>
   <!--fim menu-->
 
-  <!--Modal Cart-->
-  <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99]  items-center justify-center hidden" id="cart-modal">
-    <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]" style="height: 90%; overflow-y: scroll;">
+  <!--Modal items-->
+  <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99]  items-center justify-center hidden " id="modal-items">
+    <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px] max-h-[90%] md:max-h-[600px] overflow-auto">
       <h2 class="text-center font-bold text-2x1 py-3">Meu carrinho</h2>
 
       <div id="cart-items" class="flex justify-between mb-2 flex-col"></div>
 
-      <p class="font-bold">Total.: <span id="cart-total"> 0.00</span> </p>
+      <p class="font-bold">Total.: <span id="cart-subtotal"> 0.00</span> </p>
 
-      <p class="font-bold mt-4">Número telefone para contato </p>
+      <div class="flex items-center justify-between mt-5 w-full">
+        <button id="close-modal-btn" class="bg-red-500 text-white px-4 py-1 rounded">Fechar</button>
+        <button id="address-btn" class="bg-green-500 text-white px-4 py-1 rounded">Continuar</button>
+      </div>
+
+    </div>
+  </div>
+  <!--Fim items-->
+  <!--Modal address-->
+  <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99]  items-center justify-center hidden" id="modal-address">
+    <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px] max-h-[90%] md:max-h-[600px] overflow-auto">
+      <h2 class="text-center font-bold text-2x1 py-3">Entregar no endereço</h2>
+
+      <p class="font-bold mt-4">*Número telefone para contato </p>
       <input type="tel" placeholder="99 99999 9999" id="add-tel"
         class="w-full border-2 p-1 rounded my-1" />
       <p class="text-red-500 hidden" id="tel-warn">Digite seu telefone!</p>
 
-      <p class="font-bold mt-4">Endereço de entrega</p>
+      <p class="font-bold mt-4">*Endereço</p>
       <input type="text" placeholder="Digite seu endereço completo..." id="address"
         class="w-full border-2 p-1 rounded my-1" />
       <p class="text-red-500 hidden" id="address-warn">Digite seu endereço completo!</p>
 
+      <p class="font-bold mt-4">*Próximo a ?</p>
+      <input type="text" placeholder="Digite um ponto de referência..." id="address-next"
+        class="w-full border-2 p-1 rounded my-1" />
+      <p class="text-red-500 hidden" id="address-next-warn">Digite um ponto de referência!</p>
+
       <div class="flex items-center justify-between mt-5 w-full">
-        <button id="close-modal-btn">Fechar</button>
+        <button id="close-address-btn" class="bg-red-500 text-white px-4 py-1 rounded">Voltar</button>
+        <button id="payment-btn" class="bg-green-500 text-white px-4 py-1 rounded">Continuar</button>
+      </div>
+
+    </div>
+  </div>
+  <!--Fim address-->
+  <!--Modal form of payment-->
+  <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99]  items-center justify-center hidden" id="modal-payment">
+    <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px] max-h-[90%] md:max-h-[600px] overflow-auto">
+      <h2 class="text-center font-bold text-2x1 py-3">Forma de pagamento</h2>
+      <p class="font-bold">Pedito.: <span id="cart-total"> 0.00</span> </p>
+
+      <p class="font-bold mt-4">*Pagamento pelo </p>
+      <select id="select-payment"
+        class="w-full border-2 p-1 rounded my-1" >
+        <option value="pix">Pix</option>
+        <option value="dinheiro">Dinheiro</option>
+        <option value="cartao">Cartão</option>
+      </select>
+
+    <div class="" id="add-pix">
+      <button id="close-modal-btn" class="bg-blue-500 text-white px-4 py-1 rounded">Pix copia e cola</button>
+      <input type="text" disabled="true" id="address"
+        class="w-full border-2 p-1 rounded my-1" />
+    </div> 
+    <div>
+
+      <p class="font-bold mt-4">Observações</p>
+      <input type="text" placeholder="Digite uma observações..." id="obs"
+        class="w-full border-2 p-1 rounded my-1" />
+    </div>
+      <div class="flex items-center justify-between mt-5 w-full">
+        <button id="close-payment-btn" class="bg-red-500 text-white px-4 py-1 rounded">Voltar</button>
         <button id="checkout-btn" class="bg-green-500 text-white px-4 py-1 rounded">Finalizar pedido</button>
       </div>
 
     </div>
   </div>
-  <!--Fim Modal-->
+  <!--Fim address-->
 
   <!--Button cart footer-->
   <footer class="w-full bg-red-500 py-3 fixed bottom-0 z-40 flex items-center justify-center">
     <button class="flex items-center gap-2 text-white font-bold" id="cart-btn">
+      Produtos
       (<span id="cart-count">0</span>)
       Veja meu carrinho
       <i class="fa fa-cart-plus text-lg text-white"></i>
